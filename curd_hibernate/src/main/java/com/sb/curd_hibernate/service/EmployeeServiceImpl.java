@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.sb.curd_hibernate.dao.EmployeeDAO;
 import com.sb.curd_hibernate.entity.Employee;
 
@@ -30,13 +32,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
+	@Transactional
 	public void saveEmployee(Employee employee) {
 		employeeDAO.saveEmployee(employee);
-		
 	}
 
 
 	@Override
+	@Transactional
 	public void deleteById(int id) {
 		employeeDAO.deleteById(id);		
 	}

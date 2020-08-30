@@ -49,6 +49,7 @@ public class EmployeeHibernateImplDAO implements EmployeeDAO{
 		// get session 
 		Session session = entityManager.unwrap(Session.class);
 		//Save employee
+		System.out.println("inside DAO save employee");
 		session.saveOrUpdate(employee);// if primary key or Id is 0 then save/insert otherwise update
 	}
 
@@ -57,7 +58,7 @@ public class EmployeeHibernateImplDAO implements EmployeeDAO{
 		//get session
 		Session session = entityManager.unwrap(Session.class);
 		//delete primary key object
-		Query query = session.createQuery("delete from Employee where id = ?");
+		Query query = session.createQuery("delete from Employee where id = ?1");
 		query.setParameter(1, id);
 		query.executeUpdate();
 	}
