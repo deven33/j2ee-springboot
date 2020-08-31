@@ -19,5 +19,17 @@ import com.sb.curd_hibernate.service.EmployeeService;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
+	EmployeeService employeeService;
+	
+	@Autowired
+	public EmployeeRestController(EmployeeService employeeService) {
+		super();
+		this.employeeService = employeeService;
+	}
+	
+	@GetMapping("/employees")
+	public List<Employee> getAllEmp(){
+		return employeeService.findAll();		
+	}
 	
 }
