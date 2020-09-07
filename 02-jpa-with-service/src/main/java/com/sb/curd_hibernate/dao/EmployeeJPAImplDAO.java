@@ -34,19 +34,22 @@ public class EmployeeJPAImplDAO implements EmployeeDAO {
 
 	@Override
 	public Employee findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		//get employee
+		Employee employee = entityManager.find(Employee.class, id);
+		return employee;
 	}
 
 	@Override
 	public void addEmp(Employee e) {
-		// TODO Auto-generated method stub
-		
+		Employee emp = entityManager.merge(e);
+		e.setId(emp.getId());
 	}
 
 	@Override
 	public void deleteEmp(int id) {
-		// TODO Auto-generated method stub
+		// delete object with primary key
+		Query query = (Query) entityManager.createQuery("delete from Employee where id = ?1");
+		query.setParameter(1, id);
 		
 	}
 

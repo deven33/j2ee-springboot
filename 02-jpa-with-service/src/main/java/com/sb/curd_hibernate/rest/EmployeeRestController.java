@@ -27,9 +27,24 @@ public class EmployeeRestController {
 		this.employeeService = employeeService;
 	}
 	
-	@GetMapping("/employees")
+	@GetMapping("/employees1")
 	public List<Employee> getAllEmp(){
 		return employeeService.findAll();		
+	}
+	
+	@GetMapping("/employees1/{id}")
+	public Employee getEmp(@PathVariable int id) {
+		Employee emp = employeeService.findById(id);
+		if (emp == null ) {
+			throw new RuntimeException("Employee not available with id-"+id);
+		}
+		return emp;
+	}
+	
+	@PostMapping("/employees1")
+	public String addEmp(@RequestBody Employee e) {
+		employeeService.addEmp(e);
+		return "data inserted";
 	}
 	
 }
